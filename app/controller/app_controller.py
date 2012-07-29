@@ -13,18 +13,23 @@ class AppController(webapp2.RequestHandler):
             'comments' : comment_model.get_comments(),
             #google account stuff
             'display_user_account' : users.get_current_user(),
+            
+            #login button
             'url_link_text' : 'log-in',
             'url_account_action' : users.create_login_url(self.request.uri),
             #temporary logout button
-            'logout_link_text' : 'temp.log-out',
+            'logout_link_text' : 'log-out',
             'temp_logout' : users.create_logout_url(self.request.uri),
 
-            #if users.get_current_user():
-            #url = users.create_logout_url(self.request.uri)
-            #url_linktext = 'Logout'
-            #else:
-            #url = users.create_login_url(self.request.uri)
-            #url_linktext = 'Login'
+            'comment.author' : users.get_current_user(),
+
+#            'comment.author' : {return users.get_current_user()},
+#            if users.get_current_user():
+#            url = users.create_logout_url(self.request.uri)
+#            url_linktext = 'Logout'
+#            else:
+#            url = users.create_login_url(self.request.uri)
+#            url_linktext = 'Login'
         })
 
         # return it to the browser

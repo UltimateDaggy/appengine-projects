@@ -4,14 +4,19 @@
     <!-- load some css -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
     <title>Comments App Faraz</title>
+    <style type="">
+        #account_actions
+            {
+                float: right;
+            }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="row">
-                <p>{{ display_user_account }}</p>
-                <h2><a class="btn" href="{{ url_account_action }}">{{ url_link_text }}</a></h2>
-                <h2><a class="btn" href="{{ temp_logout }}">{{ logout_link_text }}</a></h2>
+            <div id="account_actions">
+                <p> {{ display_user_account }} <a class="btn" href="{{ url_account_action }}">{{ url_link_text }}</a>
+                <a class="btn" href="{{ temp_logout }}">{{ logout_link_text }}</a></p>
             </div>
         </div>
         <div class="row">
@@ -48,7 +53,7 @@
                     <div class="control-group">
                         <label class="control-label" for="input">Your name</label>
                         <div class="controls">
-                            <input type="text" name="author" id="input" placeholder="Your name" />
+                            <input type="text" name="author" id="input" placeholder="Your Name" value="{{display_user_account}}"/>
                         </div>
                     </div>
                     <div class="control-group">

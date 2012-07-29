@@ -18,7 +18,7 @@ def get_comments():
     for comment in query:
         comments.append({
             'author': comment.author,
-            'comment': comment.comment
+            'comment': comment.comment,
         })
 
     # return the comments
