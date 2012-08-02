@@ -8,11 +8,17 @@ from google.appengine.api import users
 
 class AppController(webapp2.RequestHandler):
     def get(self):
+        #Stop displaying None if no one signed in
+        account_user = users.get_current_user()
+
+        if account_user == None:
+            account_user = ''
+
         # get our template
         template = get_template({
             'comments' : comment_model.get_comments(),
             #google account stuff
-            'display_user_account' : users.get_current_user(),
+            'display_user_account' : account_user,
             
             #login button
             'url_link_text' : 'log-in',
@@ -20,17 +26,7 @@ class AppController(webapp2.RequestHandler):
             #temporary logout button
             'logout_link_text' : 'log-out',
             'temp_logout' : users.create_logout_url(self.request.uri),
-
-            'comment.author' : users.get_current_user(),
-
-#            'comment.author' : {return users.get_current_user()},
-#            if users.get_current_user():
-#            url = users.create_logout_url(self.request.uri)
-#            url_linktext = 'Logout'
-#            else:
-#            url = users.create_login_url(self.request.uri)
-#            url_linktext = 'Login'
-        })
+            })
 
         # return it to the browser
         self.response.out.write(template)
